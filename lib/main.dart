@@ -1,3 +1,4 @@
+import 'package:bktest/Core/Config/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,8 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 9, 78, 134),
-        secondaryHeaderColor: const Color.fromARGB(255, 156, 0, 0)
+        secondaryHeaderColor: const Color.fromARGB(255, 156, 0, 0),
       ),
+      onGenerateRoute: Routes.generateRoute,
+      initialRoute: RouteNames.initial,
     );
   }
 }
