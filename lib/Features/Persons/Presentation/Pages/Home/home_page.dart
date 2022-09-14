@@ -15,9 +15,7 @@ class _HomeState extends State<Home> {
         title: const Text('Test App : Home'),
       ),
       body: SafeArea(
-        child: Column(
-          children: [],
-        ),
+        child: Column(),
       ),
     );
   }

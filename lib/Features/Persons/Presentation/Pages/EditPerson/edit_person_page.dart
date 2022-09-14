@@ -16,7 +16,7 @@ class _EditPersonState extends State<EditPerson> {
       ),
       body: SafeArea(
         child: Column(
-          children: [],
+    
         ),
       ),
     );
