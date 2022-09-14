@@ -1,16 +1,23 @@
 # bktest
 
-A new Flutter project.
+A new Flutter project made with Flutter clean architecture and Firebase.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+ Please follow instructions that are presented in [Flutter Docs](https://docs.flutter.dev/get-started/install) to install flutter and prepare your machine to work with flutter SDK.
 
-A few resources to get you started if this is your first Flutter project:
+### How to run the website
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+To run the test Project after installing Flutter properly from the previous steps please type the following in a Terminal/CMD window opened in the project folder.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+'''
+  flutter build web --web-renderer html
+'''
+
+### How to run the testing Project
+
+To run the test Project after installing Flutter properly from the previous steps please type the following in a Terminal/CMD window opened in the project folder.
+
+'''
+  flutter run test
+'''
