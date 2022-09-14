@@ -1,6 +1,5 @@
-import 'package:bktest/Core/UseCases/use_case.dart';
 import 'package:bktest/Features/Persons/Domain/Entities/person.dart';
-import 'package:bktest/Features/Persons/Domain/UseCases/get_all_persons_use_case.dart';
+import 'package:bktest/Features/Persons/Domain/UseCases/edit_person_use_case.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -9,18 +8,11 @@ import '../Repositories/test_persons_repository.mocks.dart';
 
 void main() {
   // Setup
-  GetAllPersonsUseCase usecase;
+  EditPersonUseCase usecase;
   TestPersonsRepository mockPersonRepository;
 
   mockPersonRepository = MockTestPersonsRepository();
-  usecase = GetAllPersonsUseCase(mockPersonRepository);
-
-  final tPerson1 = Person(
-    id: '1',
-    name: 'Abdelrahman',
-    address: 'building 17, 9th neighborhood',
-    email: 'abdelrahmanbonna@outlook.com',
-  );
+  usecase = EditPersonUseCase(mockPersonRepository);
 
   final tPerson2 = Person(
     id: '2',
@@ -29,20 +21,19 @@ void main() {
     email: 'ebraam@outlook.com',
   );
 
-  final params = NoParams();
 
   // Test
   test(
-    'should get All persons from the repository',
+    'should edit person',
     () async {
       // arrange
-      when(mockPersonRepository.getAllPersons(params)).thenAnswer(
-        (_) async => Right(
-          [tPerson1, tPerson2],
+      when(mockPersonRepository.editPerson(tPerson2)).thenAnswer(
+        (_) async => const Right(
+          true,
         ),
       );
       // act
-      final result = await usecase.call(params);
+      final result = await usecase.call(tPerson2);
       // assert
       expect(
         result.isRight(),
@@ -50,10 +41,10 @@ void main() {
       );
 
       expect(
-        result.getOrElse(() => []),
-        [tPerson1, tPerson2],
+        result.getOrElse(() => false),
+        true,
       );
-      verify(mockPersonRepository.getAllPersons(params));
+      verify(mockPersonRepository.editPerson(tPerson2));
       verifyNoMoreInteractions(mockPersonRepository);
     },
   );

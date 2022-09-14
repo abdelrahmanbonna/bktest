@@ -16,7 +16,9 @@ class _AddPersonState extends State<AddPerson> {
       ),
       body: SafeArea(
         child: Column(
-          children: [],
+          children: [
+            
+          ],
         ),
       ),
     );
