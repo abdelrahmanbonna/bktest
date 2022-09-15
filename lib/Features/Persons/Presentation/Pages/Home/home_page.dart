@@ -2,6 +2,8 @@ import 'package:bktest/Core/Config/routes.dart';
 import 'package:bktest/Features/Persons/Presentation/Providers/Home/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class Home extends ConsumerStatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,6 +24,10 @@ class _HomeState extends ConsumerState<Home> {
     var provider = ref.watch(homeProvider);
     var theme = Theme.of(context);
     var mediaQuery = MediaQuery.of(context);
+    if (provider.error != null) {
+      showTopSnackBar(
+          context, CustomSnackBar.error(message: provider.error!.message));
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Test app: Home'),
