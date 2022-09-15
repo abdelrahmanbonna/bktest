@@ -45,7 +45,15 @@ class PersonsRepositoryImpl implements PersonsRepo {
     var result = await source.getAllPersons();
     if (result.statusCode == 200) {
       var data = json.decode(result.body);
-      return Right((data as Iterable).map((e) => Person.fromMap(e)).toList());
+      List<Person> list = [];
+      var res = data as Map<String, dynamic>;
+
+      res.forEach((key, value) {
+        value['id'] = key;
+        list.add(Person.fromMap(value));
+      });
+
+      return Right(list);
     } else {
       return Left(ServerFailure('Server Failed to get persons'));
     }

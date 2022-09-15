@@ -20,9 +20,9 @@ class Person {
   }) {
     return Person(
       id: id ?? this.id,
-      name: name ?? this.name,
-      email: email ?? this.email,
-      address: address ?? this.address,
+      name: name!.isNotEmpty ? name : this.name,
+      email: email!.isNotEmpty ? email : this.email,
+      address: (address!.isNotEmpty) ? address : this.address,
     );
   }
 
@@ -44,6 +44,10 @@ class Person {
     );
   }
 
+  factory Person.empty() {
+    return Person(id: '', name: '', email: '', address: '');
+  }
+
   String toJson() => json.encode(toMap());
 
   factory Person.fromJson(String source) =>
@@ -57,19 +61,15 @@ class Person {
   @override
   bool operator ==(covariant Person other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.name == name &&
-      other.email == email &&
-      other.address == address;
+
+    return other.id == id &&
+        other.name == name &&
+        other.email == email &&
+        other.address == address;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-      name.hashCode ^
-      email.hashCode ^
-      address.hashCode;
+    return id.hashCode ^ name.hashCode ^ email.hashCode ^ address.hashCode;
   }
 }

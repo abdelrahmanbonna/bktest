@@ -35,12 +35,19 @@ class _HomeState extends ConsumerState<Home> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(
-                RouteNames.addPerson,
-              );
+              Navigator.of(context).pushNamed(RouteNames.addPerson,
+                  arguments: provider.listOfPersons.length.toString());
             },
             icon: const Icon(
               Icons.add,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              ref.read(homeProvider).getAllPersons();
+            },
+            icon: const Icon(
+              Icons.refresh,
             ),
           ),
         ],

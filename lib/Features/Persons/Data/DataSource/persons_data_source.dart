@@ -13,9 +13,11 @@ class PersonsDataSource {
   }
 
   Future<http.Response> addPerson(Person person) {
-    var baseUrl = Uri.parse("$url/${person.id}.json");
-
-    return _client.post(baseUrl);
+    var baseUrl = Uri.parse("$url.json");
+    return _client.post(
+      baseUrl,
+      body: person.toJson(),
+    );
   }
 
   Future<http.Response> editPerson(Person person) {
