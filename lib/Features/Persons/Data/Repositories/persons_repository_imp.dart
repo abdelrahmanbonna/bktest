@@ -16,7 +16,7 @@ class PersonsRepositoryImpl implements PersonsRepo {
     if (result.statusCode == 200) {
       return const Right(true);
     } else {
-      return Left(ServerFailure());
+      return Left(ServerFailure('Server Failed to Add ${person.name}'));
     }
   }
 
@@ -26,17 +26,17 @@ class PersonsRepositoryImpl implements PersonsRepo {
     if (result.statusCode == 200) {
       return const Right(true);
     } else {
-      return Left(ServerFailure());
+      return Left(ServerFailure('Server Failed to delete ${person.name}'));
     }
   }
 
   @override
-  Future<Either<Failure, bool>> editPerson(Person editedPerson) async{
+  Future<Either<Failure, bool>> editPerson(Person editedPerson) async {
     var result = await source.editPerson(editedPerson);
     if (result.statusCode == 200) {
       return const Right(true);
     } else {
-      return Left(ServerFailure());
+      return Left(ServerFailure('Server Failed to edit ${editedPerson.name}'));
     }
   }
 
@@ -45,9 +45,9 @@ class PersonsRepositoryImpl implements PersonsRepo {
     var result = await source.getAllPersons();
     if (result.statusCode == 200) {
       var data = json.decode(result.body);
-      return Right((data as Iterable).map((e) => Person.fromJson(e)).toList());
+      return Right((data as Iterable).map((e) => Person.fromMap(e)).toList());
     } else {
-      return Left(ServerFailure());
+      return Left(ServerFailure('Server Failed to get persons'));
     }
   }
 }
