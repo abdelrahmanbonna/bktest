@@ -19,5 +19,5 @@ To run the test Project after installing Flutter properly from the previous step
 To run the test Project after installing Flutter properly from the previous steps please type the following in a Terminal/CMD window opened in the project folder.
 
 '''
-  flutter run test
+  flutter test path/to/test/file
 '''
